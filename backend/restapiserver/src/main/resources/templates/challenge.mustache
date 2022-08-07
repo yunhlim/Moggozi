@@ -1,0 +1,42 @@
+{{>layout/header}}
+
+<h1>챌린지 관리 페이지 Ver.1</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/admin/user/" role="button" class="btn btn-primary">전체 챌린지 조회</a>
+            <a href="/admin/challenge/" class="btn btn-success active" role="button">특정 챌린지 조회</a>
+            <a href="/admin/stage/" class="btn btn-secondary active" role="button">스테이지 관리 페이지</a>
+            <a href="/admin/post/" class="btn btn-secondary active" role="button">포스트 관리 페이지</a>
+            <a href="/admin/comment" class="btn btn-warning active" role="button">댓글 관리 페이지</a>
+        </div>
+    </div>
+    <br>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자번호</th>
+            <th>작성자</th>
+            <th>작성자</th>
+            <th>작성자</th>
+            <th>작성자</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#posts}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                <td>{{author}}</td>
+                <td>{{modifiedDate}}</td>
+            </tr>
+        {{/posts}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}
