@@ -60,6 +60,7 @@ public class Member {
 
     private int is_social;
 
+    private int point = 0;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     private Role role;
@@ -68,21 +69,6 @@ public class Member {
     @JsonManagedReference
     private List<Comment> commentList = new ArrayList<>();
 
-    @Builder
-    public Member(String username, String fullname, String password, String nickname, String introduce, String user_img, int is_private, Role role) {
-        this.username = username;
-        this.fullname = fullname;
-        this.password = password;
-        this.nickname = nickname;
-        this.introduce = introduce;
-        this.user_img = user_img;
-        this.is_private = is_private;
-
-        if(role.equals(null))
-            this.role = new Role(ERole.ROLE_USER);
-        else
-            this.role = role;
-    }
 
     @OneToMany(mappedBy = "member")
     @JsonManagedReference
@@ -123,4 +109,24 @@ public class Member {
     public void updateRole(ERole role) {
         this.role = new Role(role);
     }
+    @Builder
+    public Member(String username, String fullname, String password, String nickname, String introduce, String user_img, int is_private, Role role) {
+        this.username = username;
+        this.fullname = fullname;
+        this.password = password;
+        this.nickname = nickname;
+        this.introduce = introduce;
+        this.user_img = user_img;
+        this.is_private = is_private;
+        this.point = 0;
+        if(role.equals(null))
+            this.role = new Role(ERole.ROLE_USER);
+        else
+            this.role = role;
+    }
+
+    public void addPoint(){
+        this.point++;
+    }
+
 }

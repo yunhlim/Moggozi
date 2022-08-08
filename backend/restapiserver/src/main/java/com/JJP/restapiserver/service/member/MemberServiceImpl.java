@@ -83,7 +83,8 @@ public class MemberServiceImpl implements MemberService {
 
         Optional<Role> role = roleRepository.findById(role_no);
         // 존재하지 않는 사용자이면서도 사용되지 않은 닉네임을 사용한다면, 사용자 등록
-        saveMember(-1L, username, fullname, password, nickname, introduce, user_img, is_private, is_social, role.get());
+        saveMember(-1L, username, fullname, password, nickname, introduce, user_img, is_private, is_social, role.
+                get());
 
         return ResponseEntity.ok(new MessageResponse("Registered a user successfully!"));
     }
