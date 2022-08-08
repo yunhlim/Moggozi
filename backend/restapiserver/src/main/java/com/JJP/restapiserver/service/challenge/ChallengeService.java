@@ -32,7 +32,12 @@ public interface ChallengeService {
 
     Long joinedChallengeNum(Long member_id);
 
+
     List<ChallengeListResponseDto> joinedChallengeList8(Long member_id);
 
     List<ChallengeSimpleResponseDto> infiniteChallengeList(Long member_id, Pageable pageable);
+
+    List<ChallengeListResponseDto> getChallengeRecommendation(Long member_id);
+
+    List<ChallengeListResponseDto> getRecentCreatedList()
 }

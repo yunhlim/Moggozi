@@ -219,6 +219,20 @@ public class ChallengeServiceImpl implements ChallengeService{
         return null;
     }
 
+    @Override
+    public List<ChallengeListResponseDto> getChallengeRecommendation(Long member_id) {
+
+        return
+    }
+
+    @Override
+    public List<ChallengeListResponseDto> getRecentCreatedList() {
+        List<Challenge> challengeList = challengeRepository.findTop5OrderByCreatedTimeDesc();
+        List<ChallengeListResponseDto> challengeListResponseDtoList = new ArrayList<>();
+        challengeIntoListDto(challengeList, challengeListResponseDtoList);
+        return chall;
+    }
+
     public List<ChallengeResponseDto> challengeIntoDto(List<Challenge> challengeList, List<ChallengeResponseDto> responseDtoList
                                  , Long member_id)
     {
@@ -263,6 +277,7 @@ public class ChallengeServiceImpl implements ChallengeService{
         }
         return responseDtoList;
     }
+
     public List<ChallengeListResponseDto> challengeIntoListDto(List<Challenge> challengeList, List<ChallengeListResponseDto> responseDtoList
             , Long member_id)
     {
@@ -333,4 +348,6 @@ public class ChallengeServiceImpl implements ChallengeService{
                         .build());
             }
     }
+
+
 }
