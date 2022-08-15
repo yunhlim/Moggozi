@@ -4,5 +4,6 @@ import com.JJP.restapiserver.domain.dto.challenge.ChallengeLikeRequestDto;
 import org.springframework.http.ResponseEntity;
 
 public interface ChallengeLikeService {
-    public ResponseEntity like(ChallengeLikeRequestDto challengeLikeRequestDto, Long member_id);
+    public ResponseEntity like(ChallengeLikeRequestDto challengeLikeRequestDto);
+    public ResponseEntity unlike(ChallengeLikeRequestDto challengeLikeRequestDto);
 }

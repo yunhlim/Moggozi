@@ -1,8 +1,8 @@
 package com.JJP.restapiserver.controller.challenge;
 
 import com.JJP.restapiserver.domain.dto.challenge.ReviewRequestDto;
-import com.JJP.restapiserver.domain.dto.challenge.ReviewResponseDto;
 import com.JJP.restapiserver.domain.dto.challenge.ReviewUpdateRequestDto;
+import com.JJP.restapiserver.domain.entity.challenge.Review;
 import com.JJP.restapiserver.service.challenge.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-//@CrossOrigin("*")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/review")
 @RequiredArgsConstructor
@@ -21,24 +21,21 @@ public class ReviewController {
     @PostMapping("/register")
     public ResponseEntity registerReview(@RequestBody ReviewRequestDto reviewRequestDto)
     {
-        ReviewResponseDto reviewResponseDto= reviewService.registerReview(reviewRequestDto);
-        if(reviewResponseDto == null){
-            return new ResponseEntity("이미 등록된 한줄평이 있습니다.", HttpStatus.OK);
-        }
-        return new ResponseEntity(reviewService.registerReview(reviewRequestDto), HttpStatus.OK);
+        System.out.println(reviewRequestDto);
+        return reviewService.registerReview(reviewRequestDto);
     }
 
     @GetMapping("/{challenge_id}")
     public ResponseEntity getReviewList(@PathVariable Long challenge_id)
     {
-        List<ReviewResponseDto> reviewList = reviewService.getReviewList(challenge_id);
+        List<Review> reviewList = reviewService.getReviewList(challenge_id);
         return new ResponseEntity(reviewList, HttpStatus.OK);
     }
 
     @PutMapping("/{challenge_id}")
     public ResponseEntity updateReview(@RequestBody ReviewUpdateRequestDto reviewUpdateRequestDto)
     {
-        return new ResponseEntity(reviewService.updateReview(reviewUpdateRequestDto), HttpStatus.OK);
+        return reviewService.updateReview(reviewUpdateRequestDto);
     }
 
     @DeleteMapping("/{review_id}")
@@ -46,4 +43,7 @@ public class ReviewController {
     {
         return reviewService.deleteReview(review_id);
     }
+
+
+
 }

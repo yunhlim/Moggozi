@@ -37,6 +37,7 @@ public class StageRepositoryTest {
         stageRepository.save(Stage.builder()
                 .name(name)
                 .content(content)
+                .period(1)
                 .build());
 
         //when

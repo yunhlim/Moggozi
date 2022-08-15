@@ -7,9 +7,7 @@ import javax.persistence.*;
 // 사용자들의 권한 설정
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "roles")
 public class Role {
 
@@ -25,7 +23,6 @@ public class Role {
         this.name = name;
     }
 
-    public void updateRole(ERole name) {this.name = name;}
 //    @OneToOne(mappedBy = "role", cascade = CascadeType.ALL)
 //    private Member member;
 }

@@ -12,8 +12,4 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
 
     // 태그 비슷한거 5개 가지고 오는 메소드
     List<Tag> findTop5ByTagContaining(String tag);
-
-    List<Tag> findByTagContaining(String tag);
-
-    List<Tag> findByIdIn(List<Long> ids);
 }

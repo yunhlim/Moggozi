@@ -11,24 +11,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StageSaveRequestDto {
     private String name;
+    private int period;
     private String content;
-    private String img;
+    private String stageImg;
+    private Long order;
 
     @Builder
-    public StageSaveRequestDto(String name, String content, String img){
+    public StageSaveRequestDto(String name, int period, String content, String stage_img, Long order){
         this.name = name;
+        this.period = period;
         this.content = content;
-        this.img = img;
+        this.stageImg = stage_img;
+        this.order = order;
     }
 
-    public Stage toEntity(Long challenge_id, ChallengeRepository challengeRepository, Long size){
+    public Stage toEntity(Long challenge_id, ChallengeRepository challengeRepository){
         Challenge challenge = challengeRepository.getById(challenge_id);
         return Stage.builder()
                 .name(name)
+                .period(period)
                 .content(content)
-                .img(img)
+                .stage_img(stageImg)
+                .post_order(order)
                 .challenge(challenge)
-                .order(size + 1)
                 .build();
     }
 }

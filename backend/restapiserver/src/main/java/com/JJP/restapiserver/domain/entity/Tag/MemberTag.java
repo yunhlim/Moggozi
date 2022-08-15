@@ -1,7 +1,6 @@
 package com.JJP.restapiserver.domain.entity.Tag;
 
 
-import com.JJP.restapiserver.domain.entity.BaseTimeEntity;
 import com.JJP.restapiserver.domain.entity.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberTag extends BaseTimeEntity {
+public class MemberTag {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

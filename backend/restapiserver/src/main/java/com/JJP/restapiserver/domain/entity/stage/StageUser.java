@@ -1,7 +1,6 @@
 package com.JJP.restapiserver.domain.entity.stage;
 
 import com.JJP.restapiserver.domain.entity.member.Member;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,12 +21,12 @@ public class StageUser {
     // 멤버와 다대일 양방향 관계
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stage_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Stage stage;
 
     private LocalDateTime joinTime;
@@ -44,8 +43,16 @@ public class StageUser {
         this.endTime = end_time;
         this.state = state;
     }
-    public void setState(int state){
+    public void complete(){
         this.endTime = LocalDateTime.now();
-        this.state = state;
+        this.state = 1;
     }
+    private int state;
+
+
+    public void complete(){
+        this.endTime = LocalDateTime.now();
+        this.state = 1;
+    }
+
 }

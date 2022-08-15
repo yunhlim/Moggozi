@@ -2,7 +2,6 @@ package com.JJP.restapiserver.domain.entity.stage;
 
 import com.JJP.restapiserver.domain.entity.BaseTimeEntity;
 import com.JJP.restapiserver.domain.entity.challenge.Challenge;
-import com.JJP.restapiserver.domain.entity.file.StageImg;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
@@ -21,7 +20,7 @@ public class Stage extends BaseTimeEntity {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private Long stage_order;
+    private Long post_order;
 
     // 챌린지와 다대일 양방향 관계
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,44 +28,36 @@ public class Stage extends BaseTimeEntity {
     @JsonBackReference
     private Challenge challenge;
 
-    @OneToMany(mappedBy = "stage", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "stage")
     @JsonManagedReference
     private List<Post> postList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "stage", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<StageUser> stageUserList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "stage", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<StageImg> stageImgList = new ArrayList<>();
 
     @Column(length = 20)
     private String name;
+
+    private int period;
 
     @Column(length = 500)
     private String content;
 
     @Column(length = 200)
-    private String img;
+    private String stage_img;
 
     @Builder
-    public Stage(Long id, Long order, Challenge challenge, String name, String content, String img) {
+    public Stage(Long id, Long post_order, Challenge challenge, String name, int period, String content, String stage_img) {
         this.id = id;
-        this.stage_order = order;
+        this.post_order = post_order;
         this.challenge = challenge;
         this.name = name;
+        this.period = period;
         this.content = content;
-        this.img = img;
+        this.stage_img = stage_img;
     }
 
-    public void update(String name, String content, String img){
+    public void update(String name, String content, String stage_img){
         this.name = name;
         this.content = content;
-        this.img = img;
-    }
-
-    public void update(Long stage_order){
-        this.stage_order = stage_order;
+        this.stage_img = stage_img;
     }
 }
